@@ -52,7 +52,7 @@ mti_color_grad=[
 
 
 ## Econet 0
-econet_stats_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/main/indicators0.csv').set_index('indicator')
+econet_stats_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/master/indicators0.csv').set_index('indicator')
 # econet_std_stats_df = econet_stats_df.sub(econet_stats_df['ORI'], axis=0).T
 legend_dic = {
     'Ascendency':'Ascendency<br><sup>[bits t/km2/year]</sup>',
@@ -70,7 +70,7 @@ fig_econet = fig
 econet_utility_list  = []
 econet_utility_fig_dic={}
 for model in models:
-    econet_utility_list.append(pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/main/indicators1/'+model+'.csv').set_index(model))
+    econet_utility_list.append(pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/master/indicators1/'+model+'.csv').set_index(model))
 
 for index, df in enumerate(econet_utility_list):
     fig = go.Figure()
@@ -91,7 +91,7 @@ for index, df in enumerate(econet_utility_list):
 econet_control_list  = []
 econet_control_fig_dic = {}
 for model in models:
-    econet_control_list.append(pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/main/indicators2/'+model+'.csv').set_index(model))
+    econet_control_list.append(pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/master/indicators2/'+model+'.csv').set_index(model))
 for index, df in enumerate(econet_control_list):
     fig = go.Figure()
     fig.add_trace(go.Heatmap(
@@ -109,7 +109,7 @@ for index, df in enumerate(econet_control_list):
 
 
 ## Ascendency enar 3
-ascend_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/main/indicators3.csv').set_index('Unnamed: 0')
+ascend_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/master/indicators3.csv').set_index('Unnamed: 0')
 
 indicators=[
     'TD',
@@ -142,7 +142,7 @@ enar_asc_fig = fig
 
 
 ## Betweenness 4
-betweennness_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/main/indicators4.csv').set_index('FG')
+betweennness_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/master/indicators4.csv').set_index('FG')
 ## elimino i detriti che sono ovviamente outlier di betweenness e mascherano l'effetto degli altri
 betweennness_df = betweennness_df.loc[~betweennness_df.index.isin(['DC','SPOM','BD'])]
 box_betw_df = betweennness_df.stack().rename('Betweenness').reset_index().rename(columns={'level_1':'Model'})
@@ -168,7 +168,7 @@ betweenness_fig = fig
 
 
 ## enaR Flow 5
-flow_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/main/indicators5.csv').set_index('Unnamed: 0')
+flow_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/master/indicators5.csv').set_index('Unnamed: 0')
 flow_df = flow_df.loc[~flow_df.index.str.contains('^mode')]
 indicators = [
     'TST',
@@ -189,7 +189,7 @@ enar_flow_fig=fig
 
 
 ## Keystoneness 6
-keystoness_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/main/indicators6.csv').set_index('FG')
+keystoness_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/master/indicators6.csv').set_index('FG')
 key_plot_df = keystoness_df.loc[:, keystoness_df.columns.str.contains(('^RTI.*|^Key1.*'))]
 shrk_palette = [
     'rgba(102, 197, 204, 0.4)',
@@ -212,7 +212,7 @@ mti_list  = []
 mti_fig_dic = {}
 
 for model in models:
-    mti_list.append(pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/main/indicators7/'+model+'.csv').set_index('FG'))
+    mti_list.append(pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/master/indicators7/'+model+'.csv').set_index('FG'))
 
 for index, df in enumerate(mti_list):
     fig = go.Figure()
@@ -228,7 +228,7 @@ for index, df in enumerate(mti_list):
         title=models[index])
     mti_fig_dic[models[index]] = fig
 ### Top MTI plot
-reduced_mti_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/main/reduced_mti_interactions.csv').drop(columns='Unnamed: 0') 
+reduced_mti_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/master/reduced_mti_interactions.csv').drop(columns='Unnamed: 0') 
 fig=go.Figure()
 fig.add_trace(go.Box(
     y=reduced_mti_df['MTI'],
@@ -254,8 +254,8 @@ reduced_mti_fig = fig
 
 
 ## Ecopath statistics 8
-ewe_stats_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/main/indicators8.csv').set_index('Parameter')
-ewe_ascend_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/main/indicators_ewe.csv').rename(columns={'Unnamed: 0':'Model'}).set_index('Model')
+ewe_stats_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/master/indicators8.csv').set_index('Parameter')
+ewe_ascend_df = pd.read_csv('https://raw.githubusercontent.com/mirk-00/MSc_thesis_dashboard/master/indicators_ewe.csv').rename(columns={'Unnamed: 0':'Model'}).set_index('Model')
 
 ewe_std_stats_df = ewe_stats_df.sub(ewe_stats_df['ORI'], axis=0).T
 ewe_std_stats_df = ewe_stats_df.T
@@ -988,4 +988,4 @@ style={
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server()
