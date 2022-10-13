@@ -1,0 +1,6 @@
+venv/
+.ipynb_*
+*.ipynb_
+*.pyc
+.DS_Store
+.env
